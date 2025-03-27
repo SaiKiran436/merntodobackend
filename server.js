@@ -9,6 +9,8 @@ const authRoutes = require("./routes/authRoutes");
 const taskRoutes = require("./routes/taskRoutes");
 
 const app = express();
+console.log("Connecting to MongoDB:", process.env.MONGO_URI);
+
 app.use(express.json());
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(session({ secret: "your_secret_key", resave: false, saveUninitialized: false }));
@@ -22,7 +24,9 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+  store: MongoStore.create({ 
+    mongoUrl: process.env.MONGO_URI
+   }),
   cookie: { secure: false, httpOnly: true },
 }));
 
