@@ -8,10 +8,7 @@ const taskRoutes = require("./routes/taskRoutes");
 const app = express();
 
 app.use(
-  cors({
-    origin: "http://localhost:3001", // Allow only your frontend URL
-    credentials: true, // Allow cookies, authorization headers, etc.
-  })
+  cors()
 );
 
 app.use(express.json());
